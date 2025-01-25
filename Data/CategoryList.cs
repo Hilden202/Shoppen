@@ -39,7 +39,7 @@ namespace ConsoleShoppen.Data
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("Välj en kategori: ");
 
-                if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
+                if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int categoryChoice))
                 {
                     Console.WriteLine("Ogiltig inmatning, vänligen välj ett giltigt nummer.");
                     Thread.Sleep(2000);
@@ -47,15 +47,14 @@ namespace ConsoleShoppen.Data
                     continue;
                 }
 
-                if (nr == 0)
+                if (categoryChoice == 0)
                 {
                     loop = false;
                     break;
                 }
-                else if (nr > 0)
+                else if (categoryChoice > 0)
                 {
-                    var selectedCategory = categoryList.ElementAtOrDefault(nr - 1);
-
+                    var selectedCategory = categoryList.ElementAtOrDefault(categoryChoice - 1);
                     if (selectedCategory != null)
                     {
                         Console.Clear();
@@ -65,7 +64,9 @@ namespace ConsoleShoppen.Data
                         Console.WriteLine("--------------------------------------------");
                         Console.ResetColor();
 
-                        var productList = selectedCategory.Products
+                        // Hämta produkterna som tillhör den valda kategorin
+                        var productList = allProducts
+                            .Where(p => p.Categories.Any(c => c.Id == selectedCategory.Id))
                             .OrderBy(p => p.Name)
                             .ToList();
 
@@ -82,21 +83,19 @@ namespace ConsoleShoppen.Data
                         Console.WriteLine("--------------------------------------------");
                         Console.WriteLine("Välj en produkt: ");
 
-                        if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr2))
+                        if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int productChoice))
                         {
                             Console.WriteLine("Ogiltig inmatning, vänligen välj ett giltigt nummer.");
                             Thread.Sleep(2000);
                             Console.Clear();
                             continue;
                         }
-                        if (nr2 == 0)
+                        if (productChoice == 0)
                         {
                             Console.Clear();
                             continue;
                         }
-                        var productsList = selectedCategory.Products.ToList();
-
-                        if (nr2 - 1 < 0 || nr2 - 1 >= productsList.Count)
+                        if (productChoice - 1 < 0 || productChoice - 1 >= productList.Count)
                         {
                             Console.WriteLine("Ogiltigt val. Vänligen välj en giltig produkt.");
                             Thread.Sleep(2000);
@@ -104,7 +103,8 @@ namespace ConsoleShoppen.Data
                             continue;
                         }
 
-                        var selectedProduct = selectedCategory.Products.ElementAtOrDefault(nr2 - 1);
+                        //var selectedProduct = productList.ElementAtOrDefault(productChoice - 1);
+                        var selectedProduct = selectedCategory.Products.ElementAtOrDefault(productChoice - 1);
 
                         if (selectedProduct != null)
                         {
@@ -117,27 +117,27 @@ namespace ConsoleShoppen.Data
                             Console.WriteLine("[1] Lägg till i varukorg");
                             Console.WriteLine("[0] Tillbaka ");
                         }
-                        if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr3))
+                        if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int addProduct))
                         {
                             Console.WriteLine("Ogiltig inmatning, vänligen välj ett giltigt nummer.");
                             Thread.Sleep(2000);
                             Console.Clear();
                             continue;
                         }
-                        if (nr3 == 0)
+                        if (addProduct == 0)
                         {
                             Console.Clear();
                             continue;
                         }
-                        else if (nr3 == 1)
+                        else if (addProduct == 1)
                         {
                             // Lägg till i kundvagn --->
                             Helpers.AddToCart(selectedProduct); // Todo Fungerar inte att lägga till produkt som inte finns sen innan
                             Thread.Sleep(2000);
                             Console.Clear();
                         }
-
                     }
+
                     else
                     {
                         Console.WriteLine("Ogiltigt val, vänligen välj ett giltigt alternativ.");

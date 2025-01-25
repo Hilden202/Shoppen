@@ -45,7 +45,7 @@ namespace ConsoleShoppen.Models
             }
         }
 
-        public static void CompleteCart(int cartId)
+        public static void CompleteCart(int cartId) // Todo kolla över varför totalpriset justeras om man har fler av samma produkt vid Completed..
         {
             using (var context = new MyDbContext())
             {
@@ -56,6 +56,9 @@ namespace ConsoleShoppen.Models
 
                 if (cart != null)
                 {
+                    // Beräkna totalpriset för kundvagnen
+                    cart.TotalPrice = cart.CartProducts.Sum(cp => cp.Quantity * cp.Product.Price.GetValueOrDefault());
+
                     // Uppdatera status och datum
                     cart.Status = "Completed";
                     cart.DateCompleted = DateTime.Now;
@@ -70,6 +73,7 @@ namespace ConsoleShoppen.Models
                         }
                     }
 
+                    // Spara ändringarna
                     context.SaveChanges();
                 }
                 else

@@ -13,7 +13,6 @@ public static class Helpers
             if (cart == null)
             {
                 Cart.CreateNewCart();
-                //cart = context.Carts.Include(c => c.CartProducts).FirstOrDefault(c => c.Status == "Active");
             }
 
             if (cart != null)
@@ -21,11 +20,14 @@ public static class Helpers
                 // Kolla om produkten redan finns i kundvagnen
                 var existingProductInCart = cart.CartProducts.FirstOrDefault(p => p.ProductId == selectedProduct.Id);
 
+
+
                 if (existingProductInCart != null)
                 {
                     // Uppdatera mängden om produkten redan finns
-                    existingProductInCart.Quantity++;
+                    existingProductInCart.Quantity += 1;
                     cart.TotalPrice += selectedProduct.Price.GetValueOrDefault();
+
                 }
                 else
                 {

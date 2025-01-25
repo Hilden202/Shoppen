@@ -10,10 +10,12 @@ namespace ConsoleShoppen.Menus
         public static async Task AMenuAsync()
         {
             ICollection<Product> allProducts;
+            ICollection<Category> allCategories;
 
             using (var myDb = new MyDbContext())
             {
                 allProducts = myDb.Products.ToList();
+                allCategories = myDb.Categories.ToList();
             }
 
             bool loop = true;
@@ -55,12 +57,12 @@ namespace ConsoleShoppen.Menus
 
                         case Models.AdminMenu.Lägg_till_produkt:
                             Console.Clear();
-                            // Todo
+                            AddProduct.AddProductMenu();
                             break;
 
                         case Models.AdminMenu.Ändra_Produkt:
                             Console.Clear();
-                            // Todo
+                            await UpdateProduct.RunAsync(allProducts);
                             break;
 
                         case Models.AdminMenu.Ta_bort_produkt:
