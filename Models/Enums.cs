@@ -37,7 +37,7 @@ namespace ConsoleShoppen.Models
         Ta_bort_produkt,
         Beställningshistorik,
         Bäst_Säljande_produkter,
-        Välj_topp_produkt,
+        Välj_topp_3_produkt,
         Logga_ut = 0
     }
 }

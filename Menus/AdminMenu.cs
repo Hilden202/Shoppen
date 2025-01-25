@@ -36,9 +36,41 @@ namespace ConsoleShoppen.Menus
 
                 foreach (int menuButton in menuNumbersSorted)
                 {
-                    Console.WriteLine("[" + menuButton + "] " + Enum.GetName(typeof(Models.AdminMenu), menuButton).Replace('_', ' '));
-                }
+                    Console.ResetColor();
+                    switch ((Models.AdminMenu)menuButton)
+                    {
+                        case Models.AdminMenu.Startsida:
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            break;
+                        case Models.AdminMenu.Visa_lagersaldo:
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            break;
+                        case Models.AdminMenu.Lägg_till_produkt:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                        case Models.AdminMenu.Ändra_Produkt:
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            break;
+                        case Models.AdminMenu.Ta_bort_produkt:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+                        case Models.AdminMenu.Beställningshistorik:
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            break;
+                        case Models.AdminMenu.Bäst_Säljande_produkter:
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            break;
+                        case Models.AdminMenu.Välj_topp_3_produkt:
+                            Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            break;
+                        case Models.AdminMenu.Logga_ut:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                    }
 
+                    Console.WriteLine("[" + menuButton + "] " + Enum.GetName(typeof(Models.AdminMenu), menuButton).Replace('_', ' '));
+                    Console.WriteLine();
+                }
 
                 if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
                 {
@@ -67,12 +99,12 @@ namespace ConsoleShoppen.Menus
 
                         case Models.AdminMenu.Ta_bort_produkt:
                             Console.Clear();
-                            // Todo
+                            await DeleteProduct.RunAsync(allProducts);
                             break;
 
                         case Models.AdminMenu.Beställningshistorik:
                             Console.Clear();
-                            // Todo
+                            OrderHistoryDapper.OrderHistoryMenu();
                             break;
 
                         case Models.AdminMenu.Bäst_Säljande_produkter:
@@ -80,7 +112,7 @@ namespace ConsoleShoppen.Menus
                             // Todo
                             break;
 
-                        case Models.AdminMenu.Välj_topp_produkt:
+                        case Models.AdminMenu.Välj_topp_3_produkt:
                             Console.Clear();
                             // Todo
                             break;

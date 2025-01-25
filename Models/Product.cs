@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Numerics;
 using ConsoleShoppen.Data;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ConsoleShoppen.Models
 {
@@ -43,6 +44,10 @@ namespace ConsoleShoppen.Models
                     Console.WriteLine("Ogiltig inmatning. Ange ett giltigt antal.");
                 }
             }
+        }
+        public static void UppdateProduct()
+        {
+
         }
         public static void AddNewProduct()
         {
@@ -84,6 +89,7 @@ namespace ConsoleShoppen.Models
                 else
                 {
                     Console.WriteLine("Ogiltigt pris. Ange ett giltigt tal.");
+                    Thread.Sleep(2000);
                     return;
                 }
                 Console.WriteLine("--------------------------------------------");
@@ -128,9 +134,11 @@ namespace ConsoleShoppen.Models
                 while (continueSelection)
                 {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("--------------------------------------------");
                     Console.WriteLine("Välj kategori till produkten: ");
                     Console.WriteLine("--------------------------------------------");
+                    Console.ResetColor();
 
                     int i = 1;
                     foreach (var category in allCategories)
