@@ -8,7 +8,6 @@ namespace ConsoleShoppen.Menus
     {
         public static async Task CMenuAsync()
         {
-
             bool loop = true;
 
             while (loop)

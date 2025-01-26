@@ -14,7 +14,6 @@ class Program
         // Ladda produktlistan asynkront vid start
         await ProductList.LoadProductListAsync();
 
-        //CategoryProducts.Run();
         await Menus.StartMenu.SMenuAsync();
     }
 }

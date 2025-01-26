@@ -45,10 +45,7 @@ namespace ConsoleShoppen.Models
                 }
             }
         }
-        public static void UppdateProduct()
-        {
 
-        }
         public static void AddNewProduct()
         {
             using (var context = new MyDbContext())
@@ -205,7 +202,6 @@ namespace ConsoleShoppen.Models
                             Console.WriteLine("Kategorin " + chosenCategory.Name + " har lagts till.");
                         }
                     }
-                    Thread.Sleep(2000);
                 }
             }
         }

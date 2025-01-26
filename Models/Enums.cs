@@ -33,6 +33,7 @@ namespace ConsoleShoppen.Models
         Startsida = 1,
         Visa_lagersaldo,
         Lägg_till_produkt,
+        Lägg_till_produktkategori,
         Ändra_Produkt,
         Ta_bort_produkt,
         Beställningshistorik,

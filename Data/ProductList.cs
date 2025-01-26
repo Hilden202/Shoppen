@@ -25,12 +25,12 @@ namespace ConsoleShoppen.Data
                 //Stopwatch sw = new Stopwatch();
 
                 //sw.Start();
-                //var productList = myDb.Products.ToList();
+                //var productListTime = myDb.Products.ToList();
                 //sw.Stop();
                 //Console.WriteLine("Tid att ladda produkter vanligt: " + sw.ElapsedMilliseconds + " ms");
 
                 //sw.Restart();
-                //var productListAsync = await myDb.Products.ToListAsync();
+                //var productListTimeAsync = await myDb.Products.ToListAsync();
                 //sw.Stop();
                 //Console.WriteLine("Tid att ladda produkter asyncront: " + sw.ElapsedMilliseconds + " ms");
                 //// <--------------------------------
@@ -77,7 +77,7 @@ namespace ConsoleShoppen.Data
                     }
                     else if (nr > 0)
                     {
-                        var selectedProduct = productListAsync.Where(p => p.Id == nr).FirstOrDefault();
+                        var selectedProduct = productListAsync.ElementAtOrDefault(nr - 1);  // istället för produktId. nr - 1 eftersom index börjar från 0
 
                         if (selectedProduct != null)
                         {

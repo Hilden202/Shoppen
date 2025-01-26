@@ -22,6 +22,7 @@ namespace ConsoleShoppen.Data
                 Console.ResetColor();
 
                 var categoryList = allCategories
+                    .Where(c => !c.IsHidden)
                     .OrderBy(c => c.Name)
                     .ToList();
 
@@ -65,7 +66,7 @@ namespace ConsoleShoppen.Data
                         Console.ResetColor();
 
                         // Hämta produkterna som tillhör den valda kategorin
-                        var productList = allProducts
+                        var productList = selectedCategory.Products
                             .Where(p => p.Categories.Any(c => c.Id == selectedCategory.Id))
                             .OrderBy(p => p.Name)
                             .ToList();
@@ -103,8 +104,7 @@ namespace ConsoleShoppen.Data
                             continue;
                         }
 
-                        //var selectedProduct = productList.ElementAtOrDefault(productChoice - 1);
-                        var selectedProduct = selectedCategory.Products.ElementAtOrDefault(productChoice - 1);
+                        var selectedProduct = productList.ElementAtOrDefault(productChoice - 1); // Löste det äntligen. Se productList
 
                         if (selectedProduct != null)
                         {
@@ -133,6 +133,12 @@ namespace ConsoleShoppen.Data
                         {
                             // Lägg till i kundvagn --->
                             Helpers.AddToCart(selectedProduct); // Todo Fungerar inte att lägga till produkt som inte finns sen innan
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt val, vänligen välj ett giltigt alternativ.");
                             Thread.Sleep(2000);
                             Console.Clear();
                         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using ConsoleShoppen.Data;
 using ConsoleShoppen.Models;
 
 namespace ConsoleShoppen.Menus
@@ -35,6 +36,9 @@ namespace ConsoleShoppen.Menus
                     {
                         case Models.StartMenu.Logga_in_som_kund:
                             Console.Clear();
+
+                            // Ladda produktlistan när du loggar in som kund
+                            await ProductList.LoadProductListAsync();
 
                             await CustomerMenu.CMenuAsync();
 

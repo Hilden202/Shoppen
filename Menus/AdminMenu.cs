@@ -48,6 +48,9 @@ namespace ConsoleShoppen.Menus
                         case Models.AdminMenu.Lägg_till_produkt:
                             Console.ForegroundColor = ConsoleColor.Green;
                             break;
+                        case Models.AdminMenu.Lägg_till_produktkategori:
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            break;
                         case Models.AdminMenu.Ändra_Produkt:
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
@@ -58,7 +61,7 @@ namespace ConsoleShoppen.Menus
                             Console.ForegroundColor = ConsoleColor.Magenta;
                             break;
                         case Models.AdminMenu.Bäst_Säljande_produkter:
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
                             break;
                         case Models.AdminMenu.Välj_topp_3_produkt:
                             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -90,6 +93,11 @@ namespace ConsoleShoppen.Menus
                         case Models.AdminMenu.Lägg_till_produkt:
                             Console.Clear();
                             AddProduct.AddProductMenu();
+                            break;
+
+                        case Models.AdminMenu.Lägg_till_produktkategori:
+                            Console.Clear();
+                            AddCategory.AddCategoryMenu();
                             break;
 
                         case Models.AdminMenu.Ändra_Produkt:

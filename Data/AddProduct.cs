@@ -36,7 +36,7 @@ namespace ConsoleShoppen.Data
                     if (nr == 1)
                     {
                         Product.AddNewProduct();
-                        Thread.Sleep(200);
+                        Thread.Sleep(2000);
                         Console.Clear();
                         break;
 
