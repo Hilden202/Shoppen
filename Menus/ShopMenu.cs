@@ -22,7 +22,6 @@ namespace ConsoleShoppen.Menus
 
                 allCategories = myDb.Categories.ToList();
             }
-            //<---------------------
 
             bool loop = true;
 

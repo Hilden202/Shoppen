@@ -135,7 +135,7 @@ namespace ConsoleShoppen.Data
                         else if (addProduct == 1)
                         {
                             // Lägg till i kundvagn --->
-                            Helpers.AddToCart(selectedProduct); // Todo Fungerar inte att lägga till produkt som inte finns sen innan..
+                            Helpers.AddToCart(selectedProduct); // Todo Fungerar inte att lägga till produkt som inte finns sen innan
                             Thread.Sleep(2000);
                             Console.Clear();
                         }

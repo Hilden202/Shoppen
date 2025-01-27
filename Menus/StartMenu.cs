@@ -30,6 +30,12 @@ namespace ConsoleShoppen.Menus
                     Console.WriteLine("[" + menuButton + "] " + Enum.GetName(typeof(Models.StartMenu), menuButton).Replace('_', ' '));
                 }
 
+                Console.WriteLine();
+
+                Top3Products.LoadTop3Products();
+
+                Top3Products.ShowTop3Products();
+
                 if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
                 {
                     switch ((Models.StartMenu)nr)

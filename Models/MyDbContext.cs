@@ -9,6 +9,7 @@ namespace ConsoleShoppen.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<SelectedProduct> SelectedProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

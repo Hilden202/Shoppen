@@ -126,7 +126,7 @@ namespace ConsoleShoppen.Menus
 
                         case Models.AdminMenu.Välj_topp_3_produkt:
                             Console.Clear();
-                            // Todo
+                            Top3Products.SetTop3Products(allProducts.ToList());
                             break;
 
                         case Models.AdminMenu.Logga_ut:
