@@ -72,6 +72,9 @@ namespace ConsoleShoppen.Data
                             Console.WriteLine("[1] Namn: " + selectedProduct.Name);
                             Console.WriteLine("[2] Info: " + selectedProduct.ProductInfo);
                             Console.WriteLine("[3] Pris: " + selectedProduct.Price);
+                            // Visa alla kategorier som är kopplade till produkten
+                            var categoryNames = string.Join(", ", selectedProduct.Categories.Select(c => c.Name));
+                            Console.WriteLine("[4] Kategorier: " + (string.IsNullOrEmpty(categoryNames) ? "Inga kategorier" : categoryNames));
                             Console.WriteLine("[0] Tillbaka ");
                             Console.WriteLine("--------------------------------------------");
                             Console.WriteLine("Välj en egenskap att ändra: ");

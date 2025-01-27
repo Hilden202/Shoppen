@@ -14,7 +14,11 @@ namespace ConsoleShoppen.Menus
 
             using (var myDb = new MyDbContext())
             {
-                allProducts = myDb.Products.ToList();
+                // Inkludera relaterade kategorier
+                allProducts = myDb.Products
+                                  .Include(p => p.Categories)
+                                  .ToList();
+
                 allCategories = myDb.Categories.ToList();
             }
 
@@ -117,7 +121,7 @@ namespace ConsoleShoppen.Menus
 
                         case Models.AdminMenu.Bäst_Säljande_produkter:
                             Console.Clear();
-                            // Todo
+                            TopSellingProductDapper.TopSellingProductMenu();
                             break;
 
                         case Models.AdminMenu.Välj_topp_3_produkt:

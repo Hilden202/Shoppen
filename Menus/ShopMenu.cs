@@ -10,14 +10,17 @@ namespace ConsoleShoppen.Menus
     {
         public static async Task SMenuAsync()
         {
-            // För Kategori menyn-->
-            ICollection<Category> allCategories;
             ICollection<Product> allProducts;
+            ICollection<Category> allCategories;
 
             using (var myDb = new MyDbContext())
             {
-                allCategories = myDb.Categories.Include(p => p.Products).ToList();
-                allProducts = myDb.Products.Include(c => c.Categories).ToList();
+                // Inkludera relaterade kategorier
+                allProducts = myDb.Products
+                                  .Include(p => p.Categories)
+                                  .ToList();
+
+                allCategories = myDb.Categories.ToList();
             }
             //<---------------------
 
