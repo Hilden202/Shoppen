@@ -45,7 +45,6 @@ namespace ConsoleShoppen.Menus
 
                             // Ladda produktlistan när du loggar in som kund
                             await ProductList.LoadProductListAsync();
-
                             await CustomerMenu.CMenuAsync();
 
                             break;

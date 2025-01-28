@@ -4,6 +4,7 @@ using System.Linq;
 using ConsoleShoppen.Models;
 using ConsoleShoppen.Data;
 using Microsoft.EntityFrameworkCore;
+using WindowDemo;
 
 namespace ConsoleShoppen.Data
 {
@@ -45,14 +46,12 @@ namespace ConsoleShoppen.Data
 
                 if (key == ConsoleKey.D0)
                 {
-                    // Avbryt och återvänd till föregående meny
                     return;
                 }
 
-                // Hantera val av produkt direkt (om det är ett nummer mellan 1 och tillgängliga produkter)
                 if (key >= ConsoleKey.D1 && key <= ConsoleKey.D9)
                 {
-                    int choice = key - ConsoleKey.D0;  // Om tangenttrycket är mellan 1-9, hämta det som ett val
+                    int choice = key - ConsoleKey.D0;
 
                     if (choice >= 1 && choice <= availableProducts.Count)
                     {
@@ -80,6 +79,7 @@ namespace ConsoleShoppen.Data
                             else
                             {
                                 Console.WriteLine("Du kan bara välja 3 produkter.");
+                                Thread.Sleep(2000);
                             }
                         }
 
@@ -92,12 +92,11 @@ namespace ConsoleShoppen.Data
 
         public static void LoadTop3Products()
         {
-            // Ladda de valda produkterna från databasen
             using (var context = new MyDbContext())
             {
                 // Hämta de valda produkterna från SelectedProduct
                 top3Products = context.SelectedProducts
-                    .Where(sp => sp.IsFeatured == true) // Endast de som är "valda" (IsFeature = true)
+                    .Where(sp => sp.IsFeatured == true)
                     .ToList();
             }
         }
@@ -116,17 +115,19 @@ namespace ConsoleShoppen.Data
                     context.SelectedProducts.Add(new SelectedProduct
                     {
                         ProductId = selectedProduct.ProductId,
-                        IsFeatured = selectedProduct.IsFeatured // Märk som vald
+                        IsFeatured = selectedProduct.IsFeatured
                     });
                 }
 
-                // Spara ändringarna i databasen
                 context.SaveChanges();
             }
         }
-        // Funktion för att visa de tre topprodukterna på startsidan
+
         public static void ShowTop3Products()
         {
+
+            Lowest.LowestPosition = 0; // Återställ LowestPosition till 0
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Våra Utvalda Favoriter:");
             Console.ResetColor();
@@ -138,49 +139,70 @@ namespace ConsoleShoppen.Data
             }
             else
             {
-                // Här definieras kolumnerna som ska visas för varje produkt
-                int columnWidth = 30;  // Bredden på varje produktkolumn
-                int margin = 3;        // Avstånd mellan kolumnerna
-
-                // Beräkna var produkterna ska börja skrivas ut
-                int startX = Console.CursorLeft;
-                int startY = Console.CursorTop;
-                // Skapa en instans av DbContext för att hämta produkter
                 using (var context = new MyDbContext())
                 {
-                    // Skriv ut de tre produkterna bredvid varandra
+                    // Lista för att lagra textinnehåll som ska visas i fönstren
+                    var topText1 = new List<string>();
+                    var topText2 = new List<string>();
+                    var topText3 = new List<string>();
+
+                    // Hämta produkterna och förbered innehållet för varje fönster
                     for (int i = 0; i < top3Products.Count; i++)
                     {
                         var selectedProduct = top3Products[i];
-
-                        // Hämta den relaterade produkten
                         var product = context.Products.FirstOrDefault(p => p.Id == selectedProduct.ProductId);
+
                         if (product != null)
                         {
-                            // Beräkna varje kolumns startposition (för att skriva bredvid varandra)
-                            int columnStartX = startX + (columnWidth + margin) * i;
+                            // Lägg till produktinformation till textlistorna
+                            var productDetails = new List<string>
+                    {
+                        "Namn: " + product.Name,
+                        "Pris: " + product.Price.Value.ToString("0.##") + " kr",
+                        "Info: " + product.ProductInfo
+                    };
 
-                            // Inramad produkt med detaljer
-                            WriteProductInFrame(columnStartX, startY, product);
+                            if (i == 0) topText1.AddRange(productDetails);
+                            if (i == 1) topText2.AddRange(productDetails);
+                            if (i == 2) topText3.AddRange(productDetails);
                         }
+                    }
+
+                    // Standardmarginal mellan fönster
+                    int margin = 5;
+
+                    // Bredd för varje fönster (med fallback om listan är tom)
+                    int windowWidth1 = topText1.Any() ? topText1.Max(line => line.Length) : 0;
+                    int windowWidth2 = topText2.Any() ? topText2.Max(line => line.Length) : 0;
+                    int windowWidth3 = topText3.Any() ? topText3.Max(line => line.Length) : 0;
+
+                    // Startposition för fönster
+                    int currentLeft = 0;
+
+                    // Rita fönster 1 om det finns innehåll
+                    if (topText1.Any())
+                    {
+                        var windowTop1 = new Window("Erbjudande 1", currentLeft, 10, topText1);
+                        windowTop1.Draw();
+                        currentLeft += windowWidth1 + margin;
+                    }
+
+                    // Rita fönster 2 om det finns innehåll
+                    if (topText2.Any())
+                    {
+                        var windowTop2 = new Window("Erbjudande 2", currentLeft, 10, topText2);
+                        windowTop2.Draw();
+                        currentLeft += windowWidth2 + margin;
+                    }
+
+                    // Rita fönster 3 om det finns innehåll
+                    if (topText3.Any())
+                    {
+                        var windowTop3 = new Window("Erbjudande 3", currentLeft, 10, topText3);
+                        windowTop3.Draw();
                     }
                 }
             }
-        }
-
-        // Hjälpmetod för att skriva ut en produkt inramad
-        private static void WriteProductInFrame(int x, int y, Product product)
-        {
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine("+-------------------------------+");
-            Console.SetCursorPosition(x, y + 1);
-            Console.WriteLine("| " + product.Name.PadRight(29) + "|");
-            Console.SetCursorPosition(x, y + 2);
-            Console.WriteLine("| Pris: " + product.Price.Value.ToString("0.##").PadLeft(8) + " kr |");
-            Console.SetCursorPosition(x, y + 3);
-            Console.WriteLine("| Info: " + product.ProductInfo.PadRight(22) + "|");
-            Console.SetCursorPosition(x, y + 4);
-            Console.WriteLine("+-------------------------------+");
         }
     }
 }
