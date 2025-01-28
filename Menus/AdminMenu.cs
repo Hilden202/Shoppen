@@ -10,7 +10,6 @@ namespace ConsoleShoppen.Menus
         public static async Task AMenuAsync()
         {
             ICollection<Product> allProducts;
-            //ICollection<Category> allCategories;
 
             using (var myDb = new MyDbContext())
             {
@@ -18,8 +17,6 @@ namespace ConsoleShoppen.Menus
                 allProducts = myDb.Products
                                   .Include(p => p.Categories)
                                   .ToList();
-
-                //allCategories = myDb.Categories.ToList();
             }
 
             bool loop = true;
@@ -44,34 +41,19 @@ namespace ConsoleShoppen.Menus
                     switch ((Models.AdminMenu)menuButton)
                     {
                         case Models.AdminMenu.Startsida:
-                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Visa_lagersaldo:
-                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;
                         case Models.AdminMenu.Produkt_hantering:
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
-                        //case Models.AdminMenu.Lägg_till_produkt:
-                        //    Console.ForegroundColor = ConsoleColor.Green;
-                        //    break;
-                        //case Models.AdminMenu.Lägg_till_produktkategori:
-                        //    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        //    break;
-                        //case Models.AdminMenu.Ändra_Produkt:
-                        //    Console.ForegroundColor = ConsoleColor.Yellow;
-                        //    break;
-                        //case Models.AdminMenu.Ta_bort_produkt:
-                        //    Console.ForegroundColor = ConsoleColor.Red;
-                        //    break;
-                        case Models.AdminMenu.Beställningshistorik:
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            break;
-                        case Models.AdminMenu.Bäst_Säljande_produkter:
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        case Models.AdminMenu.Statistik:
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;
                         case Models.AdminMenu.Välj_topp_3_produkt:
-                            Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Logga_ut:
                             Console.ForegroundColor = ConsoleColor.White;
@@ -79,7 +61,6 @@ namespace ConsoleShoppen.Menus
                     }
 
                     Console.WriteLine("[" + menuButton + "] " + Enum.GetName(typeof(Models.AdminMenu), menuButton).Replace('_', ' '));
-                    Console.WriteLine();
                 }
 
                 if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
@@ -101,34 +82,10 @@ namespace ConsoleShoppen.Menus
                             Console.Clear();
                             await ProductEditMenu.PMenuAsync();
                             break;
-                        //case Models.AdminMenu.Lägg_till_produkt:
-                        //    Console.Clear();
-                        //    AddProduct.AddProductMenu();
-                        //    break;
 
-                        //case Models.AdminMenu.Lägg_till_produktkategori:
-                        //    Console.Clear();
-                        //    AddCategory.AddCategoryMenu();
-                        //    break;
-
-                        //case Models.AdminMenu.Ändra_Produkt:
-                        //    Console.Clear();
-                        //    await UpdateProduct.RunAsync(allProducts);
-                        //    break;
-
-                        //case Models.AdminMenu.Ta_bort_produkt:
-                        //    Console.Clear();
-                        //    await DeleteProduct.RunAsync(allProducts);
-                        //    break;
-
-                        case Models.AdminMenu.Beställningshistorik:
+                        case Models.AdminMenu.Statistik:
                             Console.Clear();
-                            OrderHistoryDapper.OrderHistoryMenu();
-                            break;
-
-                        case Models.AdminMenu.Bäst_Säljande_produkter:
-                            Console.Clear();
-                            TopSellingProductDapper.TopSellingProductMenu();
+                            await DataStatisticsMenu.StatMenuAsync();
                             break;
 
                         case Models.AdminMenu.Välj_topp_3_produkt:

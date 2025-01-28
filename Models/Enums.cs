@@ -33,12 +33,7 @@ namespace ConsoleShoppen.Models
         Startsida = 1,
         Visa_lagersaldo,
         Produkt_hantering,
-        //Lägg_till_produkt,
-        //Lägg_till_produktkategori,
-        //Ändra_Produkt,
-        //Ta_bort_produkt,
-        Beställningshistorik,
-        Bäst_Säljande_produkter,
+        Statistik,
         Välj_topp_3_produkt,
         Logga_ut = 0
     }
@@ -48,6 +43,12 @@ namespace ConsoleShoppen.Models
         Lägg_till_produktkategori,
         Ändra_Produkt,
         Ta_bort_produkt,
+        Tillbaka = 0
+    }
+    public enum StatisticsMenu
+    {
+        Beställningshistorik = 1,
+        Bäst_Säljande_produkter,
         Tillbaka = 0
     }
 }

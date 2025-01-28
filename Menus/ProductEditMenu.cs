@@ -61,7 +61,6 @@ namespace ConsoleShoppen.Menus
                     }
 
                     Console.WriteLine("[" + menuButton + "] " + Enum.GetName(typeof(Models.ProductEditMenu), menuButton).Replace('_', ' '));
-                    Console.WriteLine();
                 }
 
                 if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
