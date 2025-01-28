@@ -5,6 +5,8 @@ namespace ConsoleShoppen.Models
 {
     public class Cart
     {
+        private const decimal Moms = 0.25m; // 25% moms
+
         public int Id { get; set; }
         public decimal? TotalPrice { get; set; }
         public DateTime? DateAdded { get; set; }
@@ -27,6 +29,12 @@ namespace ConsoleShoppen.Models
                 return activeCart;
             }
         }
+
+        public decimal GetMoms()
+        {
+            return Moms;
+        }
+
         // Om jag vill skapa ny varukorg
         public static void CreateNewCart()
         {
@@ -45,7 +53,7 @@ namespace ConsoleShoppen.Models
             }
         }
 
-        public static void CompleteCart(int cartId) // Todo kolla över varför totalpriset justeras om man har fler av samma produkt vid Completed..
+        public static void CompleteCart(int cartId)
         {
             using (var context = new MyDbContext())
             {
@@ -57,7 +65,7 @@ namespace ConsoleShoppen.Models
                 if (cart != null)
                 {
                     // Beräkna totalpriset för kundvagnen
-                    cart.TotalPrice = cart.CartProducts.Sum(cp => cp.Quantity * cp.Product.Price.GetValueOrDefault());
+                    cart.TotalPrice = cart.CartProducts.Sum(cp => cp.Quantity * cp.Product.Price.GetValueOrDefault() * (1 + Moms));
 
                     // Uppdatera status och datum
                     cart.Status = "Completed";

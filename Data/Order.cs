@@ -101,7 +101,13 @@ namespace ConsoleShoppen.Data
             // Beräkna totalpriset för alla produkter i varukorgen baserat på kvantitet och pris
             decimal totalSum = cartList.Sum(p => p.Quantity * p.Product.Price.GetValueOrDefault());
 
-            Console.WriteLine("Totalt pris: ".PadRight(36) + totalSum.ToString("0.##") + "kr");
+            // Lägg till moms
+            decimal totalWithTax = totalSum * (1 + activeCart.GetMoms());
+
+            // Skriv ut totalpris inklusive moms
+            Console.WriteLine("Totalt pris exkl. moms: ".PadRight(36) + totalSum.ToString("0.##") + " kr");
+            Console.WriteLine("Moms (25%): ".PadRight(36) + (totalWithTax - totalSum).ToString("0.##") + " kr");
+            Console.WriteLine("Totalt pris inkl. moms: ".PadRight(36) + totalWithTax.ToString("0.##") + " kr");
             Console.WriteLine("--------------------------------------------");
         }
 
