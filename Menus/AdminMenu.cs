@@ -10,7 +10,7 @@ namespace ConsoleShoppen.Menus
         public static async Task AMenuAsync()
         {
             ICollection<Product> allProducts;
-            ICollection<Category> allCategories;
+            //ICollection<Category> allCategories;
 
             using (var myDb = new MyDbContext())
             {
@@ -19,7 +19,7 @@ namespace ConsoleShoppen.Menus
                                   .Include(p => p.Categories)
                                   .ToList();
 
-                allCategories = myDb.Categories.ToList();
+                //allCategories = myDb.Categories.ToList();
             }
 
             bool loop = true;
@@ -49,18 +49,21 @@ namespace ConsoleShoppen.Menus
                         case Models.AdminMenu.Visa_lagersaldo:
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             break;
-                        case Models.AdminMenu.Lägg_till_produkt:
+                        case Models.AdminMenu.Produkt_hantering:
                             Console.ForegroundColor = ConsoleColor.Green;
                             break;
-                        case Models.AdminMenu.Lägg_till_produktkategori:
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
-                            break;
-                        case Models.AdminMenu.Ändra_Produkt:
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            break;
-                        case Models.AdminMenu.Ta_bort_produkt:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            break;
+                        //case Models.AdminMenu.Lägg_till_produkt:
+                        //    Console.ForegroundColor = ConsoleColor.Green;
+                        //    break;
+                        //case Models.AdminMenu.Lägg_till_produktkategori:
+                        //    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        //    break;
+                        //case Models.AdminMenu.Ändra_Produkt:
+                        //    Console.ForegroundColor = ConsoleColor.Yellow;
+                        //    break;
+                        //case Models.AdminMenu.Ta_bort_produkt:
+                        //    Console.ForegroundColor = ConsoleColor.Red;
+                        //    break;
                         case Models.AdminMenu.Beställningshistorik:
                             Console.ForegroundColor = ConsoleColor.Magenta;
                             break;
@@ -94,25 +97,29 @@ namespace ConsoleShoppen.Menus
                             await StockBalance.RunAsync(allProducts);
                             break;
 
-                        case Models.AdminMenu.Lägg_till_produkt:
+                        case Models.AdminMenu.Produkt_hantering:
                             Console.Clear();
-                            AddProduct.AddProductMenu();
+                            await ProductEditMenu.PMenuAsync();
                             break;
+                        //case Models.AdminMenu.Lägg_till_produkt:
+                        //    Console.Clear();
+                        //    AddProduct.AddProductMenu();
+                        //    break;
 
-                        case Models.AdminMenu.Lägg_till_produktkategori:
-                            Console.Clear();
-                            AddCategory.AddCategoryMenu();
-                            break;
+                        //case Models.AdminMenu.Lägg_till_produktkategori:
+                        //    Console.Clear();
+                        //    AddCategory.AddCategoryMenu();
+                        //    break;
 
-                        case Models.AdminMenu.Ändra_Produkt:
-                            Console.Clear();
-                            await UpdateProduct.RunAsync(allProducts);
-                            break;
+                        //case Models.AdminMenu.Ändra_Produkt:
+                        //    Console.Clear();
+                        //    await UpdateProduct.RunAsync(allProducts);
+                        //    break;
 
-                        case Models.AdminMenu.Ta_bort_produkt:
-                            Console.Clear();
-                            await DeleteProduct.RunAsync(allProducts);
-                            break;
+                        //case Models.AdminMenu.Ta_bort_produkt:
+                        //    Console.Clear();
+                        //    await DeleteProduct.RunAsync(allProducts);
+                        //    break;
 
                         case Models.AdminMenu.Beställningshistorik:
                             Console.Clear();

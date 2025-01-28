@@ -32,14 +32,23 @@ namespace ConsoleShoppen.Models
     {
         Startsida = 1,
         Visa_lagersaldo,
-        Lägg_till_produkt,
-        Lägg_till_produktkategori,
-        Ändra_Produkt,
-        Ta_bort_produkt,
+        Produkt_hantering,
+        //Lägg_till_produkt,
+        //Lägg_till_produktkategori,
+        //Ändra_Produkt,
+        //Ta_bort_produkt,
         Beställningshistorik,
         Bäst_Säljande_produkter,
         Välj_topp_3_produkt,
         Logga_ut = 0
+    }
+    public enum ProductEditMenu
+    {
+        Lägg_till_produkt = 1,
+        Lägg_till_produktkategori,
+        Ändra_Produkt,
+        Ta_bort_produkt,
+        Tillbaka = 0
     }
 }
 

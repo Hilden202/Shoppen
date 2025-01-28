@@ -3,8 +3,8 @@ using ConsoleShoppen.Models;
 
 namespace ConsoleShoppen.Data
 {
-	public class StockBalance
-	{
+    public class StockBalance
+    {
         public static async Task RunAsync(ICollection<Product> allProducts)
         {
             using (var myDb = new MyDbContext())
@@ -27,7 +27,7 @@ namespace ConsoleShoppen.Data
                     Console.WriteLine("--------------------------------------------");
 
                     int i = 1;
-                    foreach (var product in allProducts)
+                    foreach (var product in productList)
                     {
                         Console.WriteLine("[" + i + "] " + product.Name?.PadRight(36) + product.Stock + "st");
                         i++;
@@ -49,61 +49,59 @@ namespace ConsoleShoppen.Data
                         loop = false;
                         break;
                     }
-                    else if (nr > 0)
+                    else if (nr > 0 && nr <= productList.Count) // Kontrollera att valet är inom intervallet
                     {
-                        var selectedProduct = allProducts.Where(p => p.Id == nr).FirstOrDefault();
+                        // Hämta vald produkt baserat på index
+                        var selectedProduct = productList[nr - 1];
 
-                        if (selectedProduct != null)
+                        Console.WriteLine("--------------------------------------------");
+                        Console.WriteLine("Produkt: " + selectedProduct.Name);
+                        Console.WriteLine("Saldo: " + selectedProduct.Stock);
+                        Console.WriteLine("--------------------------------------------");
+
+
+                        Console.WriteLine("[1] Fyll på produkt");
+                        Console.WriteLine("[0] Tillbaka ");
+
+                        if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr2))
                         {
-                            Console.WriteLine("--------------------------------------------");
-                            Console.WriteLine("Produkt: " + selectedProduct.Name);
-                            Console.WriteLine("Saldo: " + selectedProduct.Stock);
-                            Console.WriteLine("--------------------------------------------");
+                            Console.WriteLine("Ogiltig inmatning, vänligen välj ett giltigt nummer.");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            continue;
+                        }
+                        if (nr2 == 0)
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else if (nr2 == 1)
+                        {
+                            // lägga till produkt --->
+                            Product.AddStock(selectedProduct.Id);
+                            Thread.Sleep(2000);
+                            Console.Clear();
 
-
-                            Console.WriteLine("[1] Fyll på produkt");
-                            Console.WriteLine("[0] Tillbaka ");
-
-                            if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr2))
-                            {
-                                Console.WriteLine("Ogiltig inmatning, vänligen välj ett giltigt nummer.");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                                continue;
-                            }
-                            if (nr2 == 0)
-                            {
-                                Console.Clear();
-                                continue;
-                            }
-                            else if (nr2 == 1)
-                            {
-                                // lägga till produkt --->
-                                Product.AddStock(selectedProduct.Id);
-                                Thread.Sleep(2000);
-                                Console.Clear();
-
-                                // Uppdatera listan
-                                allProducts = myDb.Products.ToList();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Ogiltigt val, vänligen välj ett giltigt alternativ.");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
+                            // Uppdatera listan
+                            allProducts = myDb.Products.ToList();
                         }
                         else
                         {
-                            Console.WriteLine("Produkt med ID " + nr + " hittades inte.");
+                            Console.WriteLine("Ogiltigt val, vänligen välj ett giltigt alternativ.");
                             Thread.Sleep(2000);
                             Console.Clear();
                         }
                     }
-
+                    else
+                    {
+                        Console.WriteLine("Produkt med ID " + nr + " hittades inte.");
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                    }
                 }
+
             }
         }
-
     }
+
 }
