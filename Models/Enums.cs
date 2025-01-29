@@ -35,6 +35,7 @@ namespace ConsoleShoppen.Models
         Produkt_hantering,
         Statistik,
         Välj_topp_3_produkt,
+        Redigera_order_information,
         Logga_ut = 0
     }
     public enum ProductEditMenu

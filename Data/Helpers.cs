@@ -1,5 +1,6 @@
 ﻿using ConsoleShoppen.Models;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 public static class Helpers
 {

@@ -54,9 +54,25 @@ namespace ConsoleShoppen.Data
                     }
                     else if (key == ConsoleKey.P)
                     {
-                        //Todo Kod för att gå vidare med betalning..
+                        // todo faktalternativ
+
+                        // Hämta kundens aktuella varukorg
+                        var currentCartId = activeCart.Id;
+
+                        // Hämta fraktinformation och koppla den till CartId
+                        var shippingInfo = CustomerShippingDetails.GetShippingInfo(currentCartId);
+
+                        // Koppla ordernummer med shippingInfo.Id
+                        var orderNumber = Models.MongoDbConnection.GenerateOrderNumber(); // Skapa ett unikt ordernummer
+                        Console.WriteLine("Ditt ordernummer är " + currentCartId);
+
+                        //Todo Granska och godkänn
+
+                        // Spara shippingInfo till MongoDB
+                        Models.MongoDbConnection.SaveShippingInfoToMongoDb(shippingInfo, orderNumber);
+
                         // Slutför köpet
-                        Cart.CompleteCart(activeCart.Id);
+                        Cart.CompleteCart(currentCartId);
                         Cart.CreateNewCart();
                         Console.WriteLine("Köp har slutförts.");
                         Thread.Sleep(2000);

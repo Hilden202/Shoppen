@@ -36,7 +36,8 @@ namespace ConsoleShoppen.Data
                          "WHERE " +
                              "c.Status = 'Completed' " +
                          "ORDER BY " +
-                             "c.DateAdded DESC";
+                             "c.DateAdded"; // Plockade bort DESC för det sorterade tvärtom mot vad sql gjorde.
+
             List<OrderHistory> orderHistory = new List<OrderHistory>();
 
             try
