@@ -48,7 +48,8 @@ namespace ConsoleShoppen.Menus
 
                         case Models.CustomerMenu.Varukorgen:
                             Console.Clear();
-                            Order.OrderCheckout();
+                            ShippingService shippingService = new ShippingService();
+                            Order.OrderCheckout(shippingService);
                             break;
 
                         case Models.CustomerMenu.Logga_ut:

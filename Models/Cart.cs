@@ -7,8 +7,6 @@ namespace ConsoleShoppen.Models
     {
         private const decimal Moms = 0.25m; // 25% moms
 
-        private const decimal StandardShippingCost = 50.00m;  // Standard fraktkostnad 50 kr
-        private const decimal ExpressShippingCost = 100.00m;  // Express fraktkostnad 100 kr
 
         public int Id { get; set; }
         public decimal? TotalPrice { get; set; }
@@ -97,24 +95,16 @@ namespace ConsoleShoppen.Models
             return CartProducts.Sum(cp => cp.Quantity);
         }
 
-        public decimal GetShippingCost(char shippingChoice)
-        {
-            switch (shippingChoice)
-            {
-                case '1': // Standard frakt
-                    return StandardShippingCost;
-                case '2': // Express frakt
-                    return ExpressShippingCost;
-                default:
-                    Console.WriteLine("Ogiltigt val, standard frakt tillämpas.");
-                    return 0m; // Default till standard om ogiltigt val
-            }
-        }
-
         public decimal GetTotalPriceWithShipping(char shippingChoice)
         {
-            var shippingCost = GetShippingCost(shippingChoice);
-            return (decimal)(TotalPrice + shippingCost);
+            // Skapa en instans av ShippingService
+            var shippingService = new ShippingService();
+
+            // Hämta fraktkostnaden baserat på användarens val
+            var shippingCost = shippingService.GetShippingCost(shippingChoice);
+
+            // Lägg till fraktkostnaden till totalpriset
+            return TotalPrice.GetValueOrDefault() + shippingCost;  // TotalPrice kan vara null, därför används GetValueOrDefault()
         }
 
     }

@@ -94,6 +94,7 @@ public static class CustomerDataManager
                     Console.WriteLine("---------------------------------------");
                     Console.WriteLine("[1] Namn: " + selectedOrder.FullName);
                     Console.WriteLine("[2] Adress: " + selectedOrder.Address);
+                    Console.WriteLine("[3] Tel: " + selectedOrder.PhoneNumber);
                     Console.WriteLine("[0] Avbryt");
                     Console.WriteLine("---------------------------------------");
 
@@ -150,6 +151,13 @@ public static class CustomerDataManager
                                     break;
                             }
                             break;
+                        case '3':
+                            Console.WriteLine("Ange nytt telefonnummer:");
+                            selectedOrder.PhoneNumber = Console.ReadLine();
+                            SaveChangesToDatabase(selectedOrder);
+                            Console.WriteLine("Telefonnumret uppdaterat till: " + selectedOrder.PhoneNumber);
+                            Thread.Sleep(2000);
+                            break;
                         default:
                             Console.WriteLine("Ogiltigt alternativ. Vänligen välj ett alternativ");
                             break;
@@ -174,7 +182,8 @@ public static class CustomerDataManager
         var filter = Builders<ShippingInfo>.Filter.Eq(o => o.Id, order.Id);
         var update = Builders<ShippingInfo>.Update
             .Set(o => o.FullName, order.FullName)
-            .Set(o => o.Address, order.Address);
+            .Set(o => o.Address, order.Address)
+            .Set(o => o.PhoneNumber, order.PhoneNumber);
 
         shippingCollection.UpdateOne(filter, update);
     }
