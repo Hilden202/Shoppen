@@ -95,46 +95,9 @@ namespace ConsoleShoppen.Menus
                             Console.Clear();
                             Top3Products.SetTop3Products(allProducts.ToList());
                             break;
+
                         case Models.AdminMenu.Redigera_order_information:
                             Console.Clear();
-                            //Console.ForegroundColor = ConsoleColor.Yellow;
-                            //Console.WriteLine("------------------------------------");
-                            //Console.WriteLine("|          Redigera Order          |");
-                            //Console.WriteLine("------------------------------------");
-                            //Console.ResetColor();
-
-                            //// Hämta alla ordrar från MongoDB
-                            //var orders = MongoDbConnection.GetShippingCollection().Find(FilterDefinition<ShippingInfo>.Empty).ToList();
-
-                            //if (orders.Any())
-                            //{
-                            //    int i = 1;
-                            //    foreach (var order in orders)
-                            //    {
-                            //        Console.WriteLine("[" + i + "] Ordernummer: " + order.CartId + ", Kund: " + order.FullName);
-                            //        i++;
-                            //    }
-
-                            //    Console.WriteLine("Välj en order att ändra:");
-                            //    Console.WriteLine("------------------------------------");
-
-                            //    int selectedOrderIndex = 0;
-
-                            //    // Hämta input och försäkra oss om att den är ett giltigt index
-                            //    if (int.TryParse(Console.ReadLine(), out selectedOrderIndex) && selectedOrderIndex > 0 && selectedOrderIndex <= orders.Count)
-                            //    {
-                            //        var selectedOrder = orders[selectedOrderIndex - 1]; // Hämta den valda ordern (indexen är 0-baserade)
-                            //        CustomerDataManager.EditOrderDetails(selectedOrder); // Uppdatera detaljer för vald order
-                            //    }
-                            //    else
-                            //    {
-                            //        Console.WriteLine("Ogiltigt val, vänligen välj ett giltigt indexnummer.");
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    Console.WriteLine("Inga ordrar finns i systemet.");
-                            //}
                             CustomerDataManager.EditOrderDetails();
                             break;
 

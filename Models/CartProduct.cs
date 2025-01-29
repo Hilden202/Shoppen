@@ -14,5 +14,3 @@ namespace ConsoleShoppen.Models
 
     }
 }
-
-

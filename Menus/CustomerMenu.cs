@@ -37,13 +37,11 @@ namespace ConsoleShoppen.Menus
                         case Models.CustomerMenu.Startsida:
                             Console.Clear();
                             await StartMenu.SMenuAsync();
-
                             break;
 
                         case Models.CustomerMenu.Shoppen:
                             Console.Clear();
                             await ShopMenu.SMenuAsync();
-
                             break;
 
                         case Models.CustomerMenu.Varukorgen:

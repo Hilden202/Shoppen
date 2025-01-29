@@ -32,7 +32,7 @@ namespace ConsoleShoppen.Models
             var collection = database.GetCollection<ShippingInfo>("ShippingDetails");
 
             // Sätt ordernummer på shippingInfo
-            shippingInfo.Id = orderNumber;  // Vi använder ordernumret som ID för att koppla ordern till fraktinformationen
+            shippingInfo.Id = orderNumber;
 
             // Spara shippingInfo i MongoDB
             collection.InsertOne(shippingInfo);
@@ -41,8 +41,7 @@ namespace ConsoleShoppen.Models
         }
         public static string GenerateOrderNumber()
         {
-            return Guid.NewGuid().ToString(); // Skapa ett unikt ordernummer
+            return Guid.NewGuid().ToString();
         }
     }
 }
-

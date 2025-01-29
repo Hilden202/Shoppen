@@ -13,4 +13,3 @@ namespace ConsoleShoppen.Models
         public decimal TotalProductPrice { get; set; }
     }
 }
-

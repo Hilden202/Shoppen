@@ -13,10 +13,8 @@ namespace ConsoleShoppen.Models
         // Ny egenskap för att dölja kategorier
         public bool IsHidden { get; set; } = false;
 
-
         public static void AddNewCategory()
         {
-
             while (true)
             {
                 using (var context = new MyDbContext())
@@ -41,10 +39,7 @@ namespace ConsoleShoppen.Models
                     }
                     break;
                 }
-
             }
         }
     }
-
 }
-

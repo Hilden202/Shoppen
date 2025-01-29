@@ -114,7 +114,6 @@ namespace ConsoleShoppen.Models
                     Stock = addStock,
                 };
 
-
                 // Hämta alla kategorier från databasen
                 var allCategories = context.Categories.OrderBy(c => c.Name).ToList();
                 if (!allCategories.Any())
@@ -122,7 +121,6 @@ namespace ConsoleShoppen.Models
                     Console.WriteLine("Det finns inga kategorier att välja från. Lägg till kategorier först.");
                     return;
                 }
-
 
                 // Lista för valda kategorier
                 var selectedCategories = new List<Category>();
@@ -149,7 +147,6 @@ namespace ConsoleShoppen.Models
                     Console.WriteLine("[S] Skapa produkten");
                     Console.WriteLine("--------------------------------------------");
 
-                    // Vänta på tangenttryckning från användaren
                     var key = Console.ReadKey(true).Key;
 
                     if (key == ConsoleKey.D0)

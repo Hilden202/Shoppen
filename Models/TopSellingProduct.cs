@@ -7,4 +7,3 @@ namespace ConsoleShoppen.Models
         public int TotalQuantitySold { get; set; }
     }
 }
-

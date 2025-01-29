@@ -10,19 +10,6 @@ namespace ConsoleShoppen.Menus
     {
         public static async Task SMenuAsync()
         {
-            ICollection<Product> allProducts;
-            ICollection<Category> allCategories;
-
-            using (var myDb = new MyDbContext())
-            {
-                // Inkludera relaterade kategorier
-                allProducts = myDb.Products
-                                  .Include(p => p.Categories)
-                                  .ToList();
-
-                allCategories = myDb.Categories.ToList();
-            }
-
             bool loop = true;
 
             while (loop)
@@ -44,7 +31,6 @@ namespace ConsoleShoppen.Menus
                     Console.WriteLine("[" + menuButton + "] " + Enum.GetName(typeof(Models.ShopMenu), menuButton).Replace('_', ' '));
                 }
 
-
                 if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
                 {
                     switch ((Models.ShopMenu)nr)
@@ -56,7 +42,7 @@ namespace ConsoleShoppen.Menus
 
                         case Models.ShopMenu.Kategori:
                             Console.Clear();
-                            CategoryList.Run(allCategories, allProducts);
+                            await CategoryList.RunAsync();
                             break;
 
                         case Models.ShopMenu.Produkt_lista:
@@ -73,4 +59,3 @@ namespace ConsoleShoppen.Menus
         }
     }
 }
-

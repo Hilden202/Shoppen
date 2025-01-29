@@ -50,7 +50,6 @@ namespace ConsoleShoppen.Data
                                 EditProduct(activeCart, context, selectedCartProduct);
                             }
                         }
-
                     }
                     else if (key == ConsoleKey.P)
                     {
@@ -73,10 +72,9 @@ namespace ConsoleShoppen.Data
                         // Hämta fraktinformation och koppla den till CartId
                         var shippingInfo = CustomerShippingDetails.GetShippingInfo(currentCartId);
 
-                        // Granska och godkänn
                         Console.Clear();
 
-                        // Visa varukorgen och totalbeloppet
+                        // Granska och godkänn
                         ShowCartWithShipping(activeCart, shippingCost);
 
                         Console.WriteLine("--------------------------------------------");
@@ -209,6 +207,7 @@ namespace ConsoleShoppen.Data
                 ShowCart(activeCart);
 
                 decimal totalProductSum = selectedCartProduct.Quantity * selectedCartProduct.Product.Price.GetValueOrDefault();
+
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("Produkt: " + selectedCartProduct.Product.Name);
                 Console.WriteLine("Om produkten: " + selectedCartProduct.Product.ProductInfo);
@@ -244,19 +243,24 @@ namespace ConsoleShoppen.Data
                     case 2: // Ta bort produkt
                         selectedCartProduct.Quantity--;
 
-                        if (selectedCartProduct.Quantity > 0)
+                        var productToUpdate2 = context.CartProducts.FirstOrDefault(cp => cp.Id == selectedCartProduct.Id);
+                        if (productToUpdate2 != null)
                         {
-                            context.CartProducts.Update(selectedCartProduct);
-                            context.SaveChanges();
-                        }
-                        else if (selectedCartProduct.Quantity <= 0)
-                        {
-                            activeCart.CartProducts.Remove(selectedCartProduct);
-
-                            context.CartProducts.Remove(selectedCartProduct);
-                            context.SaveChanges();
-                            editingProduct = false;
-                            Console.Clear();
+                            if (selectedCartProduct.Quantity > 0)
+                            {
+                                // Uppdatera kvantiteten
+                                productToUpdate2.Quantity = selectedCartProduct.Quantity;
+                                context.SaveChanges();
+                            }
+                            else
+                            {
+                                // Ta bort produkten från kundvagnen
+                                activeCart.CartProducts.Remove(selectedCartProduct);
+                                context.CartProducts.Remove(productToUpdate2);
+                                context.SaveChanges();
+                                editingProduct = false;
+                                Console.Clear();
+                            }
                         }
                         break;
 

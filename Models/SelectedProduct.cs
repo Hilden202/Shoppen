@@ -8,4 +8,3 @@ namespace ConsoleShoppen.Models
         public bool IsFeatured { get; set; } = false;
     }
 }
-

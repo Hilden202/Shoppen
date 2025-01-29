@@ -10,7 +10,7 @@ namespace ConsoleShoppen.Menus
         public static async Task PMenuAsync()
         {
             ICollection<Product> allProducts;
-            ICollection<Category> allCategories;
+            //ICollection<Category> allCategories;
 
             using (var myDb = new MyDbContext())
             {
@@ -19,7 +19,7 @@ namespace ConsoleShoppen.Menus
                                   .Include(p => p.Categories)
                                   .ToList();
 
-                allCategories = myDb.Categories.ToList();
+                //allCategories = myDb.Categories.ToList();
             }
 
             bool loop = true;

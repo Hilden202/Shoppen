@@ -11,8 +11,9 @@ class Program
         //// Första gången bara!
         //CategoryProducts.Run();
 
-        // Ladda produktlistan asynkront vid start
+        // Ladda produktlistan & categorilistan asynkront vid start
         await ProductList.LoadProductListAsync();
+        await CategoryList.LoadCategoryListAsync();
 
         await Menus.StartMenu.SMenuAsync();
     }

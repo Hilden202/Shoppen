@@ -29,4 +29,3 @@ namespace ConsoleShoppen.Models
         }
     }
 }
-

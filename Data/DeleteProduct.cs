@@ -10,7 +10,6 @@ namespace ConsoleShoppen.Data
         {
             using (var myDb = new MyDbContext())
             {
-
                 bool loop = true;
 
                 while (loop)

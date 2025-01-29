@@ -33,7 +33,6 @@ namespace ConsoleShoppen.Menus
                 Console.WriteLine();
 
                 Top3Products.LoadTop3Products();
-
                 Top3Products.ShowTop3Products();
 
                 if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
@@ -42,20 +41,17 @@ namespace ConsoleShoppen.Menus
                     {
                         case Models.StartMenu.Logga_in_som_kund:
                             Console.Clear();
-
-                            // Ladda produktlistan när du loggar in som kund
-                            await ProductList.LoadProductListAsync();
+                            // Ladda produktlistan & categorilidtan när du loggar in som kund
+                            // behövde läggas till även för att updatera om tex ny produkt skapats i samma körning.
+                            await ProductList.LoadProductListAsync(); 
+                            await CategoryList.LoadCategoryListAsync();
                             await CustomerMenu.CMenuAsync();
-
                             break;
 
                         case Models.StartMenu.Logga_in_som_Admin:
                             Console.Clear();
-
                             await AdminMenu.AMenuAsync();
-
                             break;
-
 
                         case Models.StartMenu.Avsluta:
                             loop = false;
@@ -66,4 +62,3 @@ namespace ConsoleShoppen.Menus
         }
     }
 }
-

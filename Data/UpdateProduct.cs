@@ -111,6 +111,7 @@ namespace ConsoleShoppen.Data
                                 case 2: // Ändra info
                                     Console.WriteLine("Ange ny kort info för produkten (nuvarande: " + selectedProduct.ProductInfo + "): ");
                                     string newInfo = Console.ReadLine();
+
                                     if (!string.IsNullOrWhiteSpace(newInfo))
                                     {
                                         selectedProduct.ProductInfo = newInfo;
@@ -127,6 +128,7 @@ namespace ConsoleShoppen.Data
                                 case 3: // Ändra pris
                                     Console.WriteLine("Ange nytt pris för produkten (nuvarande: " + selectedProduct.Price + "): ");
                                     string priceInput = Console.ReadLine();
+
                                     if (decimal.TryParse(priceInput, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal newPrice) && newPrice >= 0)
                                     {
                                         selectedProduct.Price = newPrice;

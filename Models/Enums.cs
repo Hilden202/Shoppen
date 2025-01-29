@@ -6,12 +6,14 @@ namespace ConsoleShoppen.Models
     //    Kund = 1,
     //    Admin = 2,
     //}
+
     public enum StartMenu
     {
         Logga_in_som_kund = 1,
         Logga_in_som_Admin,
         Avsluta = 0
     }
+
     public enum CustomerMenu
     {
         Startsida = 1,
@@ -53,4 +55,3 @@ namespace ConsoleShoppen.Models
         Tillbaka = 0
     }
 }
-

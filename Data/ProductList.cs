@@ -107,7 +107,7 @@ namespace ConsoleShoppen.Data
                         else if (nr2 == 1)
                         {
                             // Lägg till i kundvagn --->
-                            Helpers.AddToCart(selectedProduct);
+                            Cart.AddToCart(selectedProduct);
                             Thread.Sleep(2000);
                             Console.Clear();
                         }
