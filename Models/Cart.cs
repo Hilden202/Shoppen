@@ -53,7 +53,7 @@ namespace ConsoleShoppen.Models
             }
         }
 
-        public static void CompleteCart(int cartId)
+        public static void CompleteCart(int cartId, decimal shippingCost)
         {
             using (var context = new MyDbContext())
             {
@@ -64,8 +64,10 @@ namespace ConsoleShoppen.Models
 
                 if (cart != null)
                 {
-                    // Beräkna totalpriset för kundvagnen
-                    cart.TotalPrice = cart.CartProducts.Sum(cp => cp.Quantity * cp.Product.Price.GetValueOrDefault() * (1 + Moms));
+                    // Beräkna totalpriset för kundvagnen inklusive frakt och moms
+                    decimal totalProductPrice = cart.CartProducts.Sum(cp => cp.Quantity * cp.Product.Price.GetValueOrDefault());
+                    decimal totalWithTax = totalProductPrice * (1 + Moms);
+                    cart.TotalPrice = totalWithTax + shippingCost;
 
                     // Uppdatera status och datum
                     cart.Status = "Completed";
@@ -94,19 +96,6 @@ namespace ConsoleShoppen.Models
         {
             return CartProducts.Sum(cp => cp.Quantity);
         }
-
-        public decimal GetTotalPriceWithShipping(char shippingChoice)
-        {
-            // Skapa en instans av ShippingService
-            var shippingService = new ShippingService();
-
-            // Hämta fraktkostnaden baserat på användarens val
-            var shippingCost = shippingService.GetShippingCost(shippingChoice);
-
-            // Lägg till fraktkostnaden till totalpriset
-            return TotalPrice.GetValueOrDefault() + shippingCost;  // TotalPrice kan vara null, därför används GetValueOrDefault()
-        }
-
     }
 }
 

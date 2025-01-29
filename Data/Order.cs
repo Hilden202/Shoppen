@@ -65,14 +65,10 @@ namespace ConsoleShoppen.Data
                         Console.WriteLine("Välj fraktalternativ:");
                         Console.WriteLine("[1] Standard frakt (50 kr)");
                         Console.WriteLine("[2] Express frakt (100 kr)");
-
                         var shippingChoice = Console.ReadKey(true).KeyChar;
 
                         // Använd en metod för att få fraktkostnaden baserat på användarens val
                         decimal shippingCost = shippingService.GetShippingCost(shippingChoice);
-
-                        // Använd GetTotalPriceWithShipping-metoden för att få det totala priset inklusive frakt
-                        decimal totalPrice = activeCart.GetTotalPriceWithShipping(shippingChoice);
 
                         // Hämta fraktinformation och koppla den till CartId
                         var shippingInfo = CustomerShippingDetails.GetShippingInfo(currentCartId);
@@ -91,12 +87,11 @@ namespace ConsoleShoppen.Data
 
                         if (confirmationChoice == '1')
                         {
-
                             // Spara shippingInfo till MongoDB
                             Models.MongoDbConnection.SaveShippingInfoToMongoDb(shippingInfo, orderNumber);
 
                             // Slutför köpet
-                            Cart.CompleteCart(currentCartId);
+                            Cart.CompleteCart(currentCartId, shippingCost);
                             Cart.CreateNewCart();
                             Console.WriteLine("Köp har slutförts.");
                             Thread.Sleep(2000);
@@ -107,7 +102,6 @@ namespace ConsoleShoppen.Data
                             Console.WriteLine("Köp har avbrutits.");
                             Thread.Sleep(2000);
                         }
-
                         break;
                     }
                     else
