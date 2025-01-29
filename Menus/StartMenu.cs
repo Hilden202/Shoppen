@@ -15,8 +15,8 @@ namespace ConsoleShoppen.Menus
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("------------------------------------");
-                Console.WriteLine("|      Välkommen till Elbutiken    |");
-                Console.WriteLine("|      Allt inom Elektronik        |");
+                Console.WriteLine("|     Välkommen till Elbutiken     |");
+                Console.WriteLine("|       Allt inom Elektronik       |");
                 Console.WriteLine("------------------------------------");
                 Console.ResetColor();
 
@@ -39,7 +39,7 @@ namespace ConsoleShoppen.Menus
                 {
                     switch ((Models.StartMenu)nr)
                     {
-                        case Models.StartMenu.Logga_in_som_kund:
+                        case Models.StartMenu.Besök_som_kund:
                             Console.Clear();
                             // Ladda produktlistan & categorilidtan när du loggar in som kund
                             // behövde läggas till även för att updatera om tex ny produkt skapats i samma körning.
@@ -49,8 +49,16 @@ namespace ConsoleShoppen.Menus
                             break;
 
                         case Models.StartMenu.Logga_in_som_Admin:
-                            Console.Clear();
+                            //Console.Clear();
+                            if (AdminLogin.ShowLoginWindow() == true)
+                            {
                             await AdminMenu.AMenuAsync();
+                            }
+                            else
+                            {
+                                Console.WriteLine("\n\n  Fel lösenord...");
+                                Thread.Sleep(2000);
+                            }
                             break;
 
                         case Models.StartMenu.Avsluta:

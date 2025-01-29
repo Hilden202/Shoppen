@@ -13,7 +13,7 @@ public static class CustomerDataManager
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("|            Redigera Order           |");
+            Console.WriteLine("|        Redigera Beställning         |");
             Console.WriteLine("---------------------------------------");
             Console.ResetColor();
 
@@ -24,12 +24,12 @@ public static class CustomerDataManager
             {
                 foreach (var order in orders)
                 {
-                    Console.WriteLine("Order: " + order.CartId + ", Kund: " + order.FullName);
+                    Console.WriteLine("Beställning: " + order.CartId + ", Kund: " + order.FullName);
                 }
                 Console.WriteLine("---------------------------------------");
                 Console.WriteLine("[0] Tillbaka");
                 Console.WriteLine("---------------------------------------");
-                Console.WriteLine("Välj en order att ändra:");
+                Console.WriteLine("Välj en beställning att ändra:");
 
                 string? input = Console.ReadLine();
 
@@ -46,7 +46,7 @@ public static class CustomerDataManager
                     if (selectedOrder != null)
                     {
                         Console.WriteLine("---------------------------------------");
-                        Console.WriteLine("Redigera information för order " + selectedOrder.CartId + ":");
+                        Console.WriteLine("Redigera information för beställning " + selectedOrder.CartId + ":");
                         Console.WriteLine("---------------------------------------");
                         Console.WriteLine("[1] Namn: " + selectedOrder.FullName);
                         Console.WriteLine("[2] Adress: " + selectedOrder.Address);
@@ -122,13 +122,13 @@ public static class CustomerDataManager
                 }
                 else
                 {
-                    Console.WriteLine("Ordernummer hittades inte. Försök igen.");
+                    Console.WriteLine("Beställningsnummret hittades inte. Försök igen.");
                     Thread.Sleep(2000);
                 }
             }
             else
             {
-                Console.WriteLine("Inga ordrar finns i systemet.");
+                Console.WriteLine("Inga beställningar finns i systemet.");
                 Thread.Sleep(2000);
                 loop = false;
             }

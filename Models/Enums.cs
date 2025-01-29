@@ -9,7 +9,7 @@ namespace ConsoleShoppen.Models
 
     public enum StartMenu
     {
-        Logga_in_som_kund = 1,
+        Besök_som_kund = 1,
         Logga_in_som_Admin,
         Avsluta = 0
     }
@@ -37,7 +37,7 @@ namespace ConsoleShoppen.Models
         Produkt_hantering,
         Statistik,
         Välj_topp_3_produkt,
-        Redigera_order_information,
+        Redigera_beställnings_information,
         Logga_ut = 0
     }
     public enum ProductEditMenu

@@ -33,51 +33,50 @@ namespace ConsoleShoppen.Data
                         Console.WriteLine("[" + i + "] " + category.Name.PadRight(30) + isHidden);
                         i++;
                     }
-                    Console.WriteLine("[" + i + "] Lägg till en ny Kategori: ");
                     Console.WriteLine("[0] Tillbaka");
+                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("[k] Lägg till en ny Kategori: ");
                     Console.WriteLine("--------------------------------------------");
                     Console.WriteLine("Välj kategori att visa/dölja");
 
-                    if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int newCategory))
+                    var key = Console.ReadKey(true).Key;
+
+                    if (key == ConsoleKey.K)
                     {
-                        Console.WriteLine("Ogiltig inmatning, vänligen välj ett giltigt nummer.");
+                        Category.AddNewCategory();
                         Thread.Sleep(2000);
                         Console.Clear();
                         continue;
                     }
-                    if (newCategory == 0)
+                    if (key == ConsoleKey.D0)
                     {
                         loop = false;
-                    }
-                    if (newCategory == i)
-                    {
-                        Category.AddNewCategory();
-                        Thread.Sleep(200);
-                        Console.Clear();
                         continue;
-
                     }
-                    else if (newCategory > 0 && newCategory < i)
+                    if (key >= ConsoleKey.D1 && key <= ConsoleKey.D9)
                     {
-                        var selectedCategory = allCategories.FirstOrDefault(c => c.Id == newCategory);
+                        int newCategory = (int)(key - ConsoleKey.D0);
 
-                        if (selectedCategory != null)
+                        if (newCategory <= allCategories.Count)
                         {
-                            selectedCategory.IsHidden = !selectedCategory.IsHidden; // Toggla värdet mellan visa/dold
-                            myDb.Categories.Update(selectedCategory);
-                            myDb.SaveChanges();
-                            Console.WriteLine("Kategorin " + selectedCategory.Name + " har ändrats.");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                        }
+                            var selectedCategory = allCategories.FirstOrDefault(c => c.Id == newCategory);
 
+                            if (selectedCategory != null)
+                            {
+                                selectedCategory.IsHidden = !selectedCategory.IsHidden; // Toggla värdet mellan visa/dold
+                                myDb.Categories.Update(selectedCategory);
+                                myDb.SaveChanges();
+                                Console.WriteLine("Kategorin " + selectedCategory.Name + " har ändrats.");
+                                Thread.Sleep(2000);
+                                Console.Clear();
+                            }
+
+                        }
                     }
+
                 }
 
             }
-
         }
     }
 }
-
-

@@ -56,7 +56,7 @@ namespace ConsoleShoppen.Menus
                         case Models.AdminMenu.Välj_topp_3_produkt:
                             Console.ForegroundColor = ConsoleColor.White;
                             break;
-                        case Models.AdminMenu.Redigera_order_information:
+                        case Models.AdminMenu.Redigera_beställnings_information:
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Logga_ut:
@@ -96,7 +96,7 @@ namespace ConsoleShoppen.Menus
                             Top3Products.SetTop3Products(allProducts.ToList());
                             break;
 
-                        case Models.AdminMenu.Redigera_order_information:
+                        case Models.AdminMenu.Redigera_beställnings_information:
                             Console.Clear();
                             CustomerDataManager.EditOrderDetails();
                             break;
