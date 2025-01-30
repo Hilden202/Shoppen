@@ -29,9 +29,9 @@ namespace ConsoleShoppen.Data
                 while (loop)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine("|             Kategori Lista               |");
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                    Console.WriteLine("│             Kategori Lista               │");
+                    Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
                     var categoryList = categoryListAsync
@@ -73,9 +73,9 @@ namespace ConsoleShoppen.Data
 
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("--------------------------------------------");
-                        Console.WriteLine("|         Kategori: " + selectedCategory.Name.PadRight(19) + "    |");
-                        Console.WriteLine("--------------------------------------------");
+                        Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                        Console.WriteLine("│         Kategori: " + selectedCategory.Name.PadRight(19) + "    │");
+                        Console.WriteLine("└-────────────────────────────────────────-┘");
                         Console.ResetColor();
 
                         // Hämta produkterna som tillhör den valda kategorin

@@ -18,9 +18,9 @@ namespace ConsoleShoppen.Data
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("--------------------------------------------");
-                Console.WriteLine("|         Välj Topp 3 Produkter            |");
-                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                Console.WriteLine("│          Välj Topp 3 Produkter           │");
+                Console.WriteLine("└-────────────────────────────────────────-┘");
                 Console.ResetColor();
 
                 // Ladda de tre valda produkterna från databasen om de inte finns i den statiska listan

@@ -19,7 +19,7 @@ namespace ConsoleShoppen.Models
         Startsida = 1,
         Shoppen,
         Varukorgen,
-        Logga_ut = 0
+        Tillbaka = 0
     }
 
     public enum ShopMenu
@@ -32,8 +32,7 @@ namespace ConsoleShoppen.Models
 
     public enum AdminMenu
     {
-        Startsida = 1,
-        Visa_lagersaldo,
+        Visa_lagersaldo = 1,
         Produkt_hantering,
         Statistik,
         Välj_topp_3_produkt,

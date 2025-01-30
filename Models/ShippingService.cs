@@ -21,6 +21,7 @@ namespace ConsoleShoppen.Models
                     break;
                 default:
                     Console.WriteLine("Ogiltigt val, standard frakt används.");
+                    Thread.Sleep(1000);
                     shippingCost = StandardShippingCost;
                     break;
             }

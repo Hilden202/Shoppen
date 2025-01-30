@@ -63,32 +63,31 @@ namespace ConsoleShoppen.Data
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("--------------------------------------------");
-                Console.WriteLine("|          Beställnings historik           |");
-                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("┌──────────────────────────────────────────────────────────────┐");
+                Console.WriteLine("│                      Beställnings historik                   │");
+                Console.WriteLine("└-────────────────────────────────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var orders = GetOrderHistory();
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("+------------+-------------+-------------------+---------------+------------------------+----------+---------------+---------------------+");
-                Console.WriteLine("| Order ID   | Totalpris   | Beställningsdatum | Orderstatus   | Produkt                | Antal    | Produktpris   | Totalt produktpris  |");
-                Console.WriteLine("+------------+-------------+-------------------+---------------+------------------------+----------+---------------+---------------------+");
+                Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Order ID   │ Totalpris   │ Beställningsdatum │ Orderstatus   │ Produkt                │ Antal    │ Produktpris   │ Totalt produktpris  │");
+                Console.WriteLine("└────────────+─────────────+───────────────────+───────────────+────────────────────────+──────────+───────────────+─────────────────────┘");
                 Console.ResetColor();
-                Console.WriteLine("+------------+-------------+-------------------+---------------+------------------------+----------+---------------+---------------------+");
 
                 foreach (var order in orders)
                 {
-                    Console.WriteLine("|" + order.OrderId.ToString().PadRight(12) +
-                  "|" + order.TotalPrice.ToString("0 kr").PadRight(13) +
-                  "|" + order.OrderDate.ToString("yyyy-MM-dd").PadRight(19) +
-                  "|" + order.OrderStatus.PadRight(15) +
-                  "|" + order.ProductName.PadRight(24) +
-                  "|" + order.Quantity.ToString().PadRight(10) +
-                  "|" + order.ProductPrice.ToString("0 kr").PadRight(15) +
-                  "|" + order.TotalProductPrice.ToString("0 kr").PadRight(21) + "|");
+                    Console.WriteLine("│" + order.OrderId.ToString().PadRight(12) +
+                  "│" + order.TotalPrice.ToString("0 kr").PadRight(13) +
+                  "│" + order.OrderDate.ToString("yyyy-MM-dd").PadRight(19) +
+                  "│" + order.OrderStatus.PadRight(15) +
+                  "│" + order.ProductName.PadRight(24) +
+                  "│" + order.Quantity.ToString().PadRight(10) +
+                  "│" + order.ProductPrice.ToString("0 kr").PadRight(15) +
+                  "│" + order.TotalProductPrice.ToString("0 kr").PadRight(21) + "│");
 
-                    Console.WriteLine("+------------+-------------+-------------------+---------------+------------------------+----------+---------------+---------------------+");
+                    Console.WriteLine("+────────────+─────────────+───────────────────+───────────────+────────────────────────+──────────+───────────────+─────────────────────+");
                 }
 
                 Console.WriteLine("[0] Tillbaka");

@@ -14,9 +14,9 @@ namespace ConsoleShoppen.Menus
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine("|             Kund meny            |");
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine("┌-─-──────────────────────────────-┐");
+                Console.WriteLine("│             Kund meny            │");
+                Console.WriteLine("└-────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var menuNumbersSorted = Enum.GetValues(typeof(Models.CustomerMenu))
@@ -50,7 +50,7 @@ namespace ConsoleShoppen.Menus
                             Order.OrderCheckout(shippingService);
                             break;
 
-                        case Models.CustomerMenu.Logga_ut:
+                        case Models.CustomerMenu.Tillbaka:
                             loop = false;
                             break;
                     }

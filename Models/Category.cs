@@ -22,7 +22,7 @@ namespace ConsoleShoppen.Models
                     Console.WriteLine("--------------------------------------------");
                     Console.WriteLine("Ange ny Kategori: ");
                     string addCategory = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(addCategory))
+                    if (!string.IsNullOrWhiteSpace(addCategory) && !int.TryParse(addCategory, out _)) // && special för att inte kunna skriva siffror
                     {
                         var newCategory = new Category
                         {

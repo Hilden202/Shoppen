@@ -28,9 +28,9 @@ namespace ConsoleShoppen.Menus
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine("|     Produkt redigerings meny      |");
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine("┌-─-───────────────────────────────-┐");
+                Console.WriteLine("│     Produkt redigerings meny      │");
+                Console.WriteLine("└-─────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var menuNumbersSorted = Enum.GetValues(typeof(Models.ProductEditMenu))

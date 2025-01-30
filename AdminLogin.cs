@@ -18,7 +18,7 @@ namespace ConsoleShoppen
                 return password == "1234"; // Returnerar true om lösenordet är korrekt
             }
 
-            private static string ReadPassword()
+            private static string ReadPassword() // special special
             {
                 StringBuilder password = new StringBuilder();
                 while (true)

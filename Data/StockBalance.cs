@@ -14,9 +14,9 @@ namespace ConsoleShoppen.Data
                 while (loop)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine("|               Lagersaldo                 |");
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                    Console.WriteLine("│               Lagersaldo                 │");
+                    Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
                     var productList = allProducts

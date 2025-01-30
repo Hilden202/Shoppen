@@ -16,9 +16,9 @@ namespace ConsoleShoppen.Menus
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine("|             Shoppen              |");
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine("┌-─-──────────────────────────────-┐");
+                Console.WriteLine("│             Shoppen              │");
+                Console.WriteLine("└-────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var menuNumbersSorted = Enum.GetValues(typeof(Models.ShopMenu))

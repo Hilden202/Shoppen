@@ -40,9 +40,9 @@ namespace ConsoleShoppen.Data
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("--------------------------------------------");
-                Console.WriteLine("|               Sök Produkt                |");
-                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                Console.WriteLine("│               Sök Produkt                │");
+                Console.WriteLine("└-────────────────────────────────────────-┘");
                 Console.ResetColor();
 
                 Console.WriteLine("[0] Tillbaka");
@@ -92,9 +92,9 @@ namespace ConsoleShoppen.Data
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine("|     Förslag baserat på din inmatning     |");
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                    Console.WriteLine("│     Förslag baserat på din inmatning     │");
+                    Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
                     int i = 1;
                     foreach (var product in matchingProducts)

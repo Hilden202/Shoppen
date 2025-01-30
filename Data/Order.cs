@@ -114,9 +114,9 @@ namespace ConsoleShoppen.Data
         public static void ShowCart(Cart activeCart)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("|                 Varukorg                 |");
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+            Console.WriteLine("│                 Varukorg                 │");
+            Console.WriteLine("└-────────────────────────────────────────-┘");
             Console.ResetColor();
 
             int totalQuantity = activeCart.GetTotalQuantity(); // Total kvantitet av produkter
@@ -154,9 +154,9 @@ namespace ConsoleShoppen.Data
         public static void ShowCartWithShipping(Cart activeCart, decimal shippingCost)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("|           Granska beställning             |");
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+            Console.WriteLine("│           Granska beställning            │");
+            Console.WriteLine("└-────────────────────────────────────────-┘");
             Console.ResetColor();
 
             int totalQuantity = activeCart.GetTotalQuantity(); // Total kvantitet av produkter
@@ -226,6 +226,7 @@ namespace ConsoleShoppen.Data
                     Console.Clear();
                     continue;
                 }
+                // todo live updatering för av kundvagnen syns inte i sql när man kör pluss minus produkt..
                 switch (nr)
                 {
                     case 1: // Lägg till produkt
@@ -258,6 +259,7 @@ namespace ConsoleShoppen.Data
                                 activeCart.CartProducts.Remove(selectedCartProduct);
                                 context.CartProducts.Remove(productToUpdate2);
                                 context.SaveChanges();
+
                                 editingProduct = false;
                                 Console.Clear();
                             }
@@ -275,7 +277,6 @@ namespace ConsoleShoppen.Data
                         break;
                 }
             }
-
         }
     }
 }

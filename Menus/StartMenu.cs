@@ -14,10 +14,10 @@ namespace ConsoleShoppen.Menus
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine("|     Välkommen till Elbutiken     |");
-                Console.WriteLine("|       Allt inom Elektronik       |");
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine("┌-─-──────────────────────────────-┐");
+                Console.WriteLine("│     Välkommen till Elbutiken     │");
+                Console.WriteLine("│       Allt inom Elektronik       │");
+                Console.WriteLine("└-────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var menuNumbersSorted = Enum.GetValues(typeof(Models.StartMenu))

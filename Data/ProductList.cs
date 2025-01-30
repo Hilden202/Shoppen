@@ -40,9 +40,9 @@ namespace ConsoleShoppen.Data
                 while (loop)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine("|              Produkt Lista               |");
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                    Console.WriteLine("│              Produkt Lista               │");
+                    Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
                     var productList = productListAsync

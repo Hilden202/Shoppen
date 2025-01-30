@@ -61,26 +61,25 @@ namespace ConsoleShoppen.Data
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("--------------------------------------------");
-                Console.WriteLine("|          Bäst Säljande produkter         |");
-                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("┌───────────────────────────────────────────────────────┐");
+                Console.WriteLine("│                Bäst Säljande produkter                │");
+                Console.WriteLine("└-─────────────────────────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var topSeller = GetTopSellingProduct();
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("+------------------------+------------------------------+");
-                Console.WriteLine("| Produkt                | Totalt antal sålda produkter |");
-                Console.WriteLine("+------------------------+------------------------------+");
+                Console.WriteLine("┌───────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Produkt                │ Totalt antal sålda produkter │");
+                Console.WriteLine("└────────────────────────+──────────────────────────────┘");
                 Console.ResetColor();
-                Console.WriteLine("+------------------------+------------------------------+");
 
                 foreach (var product in topSeller)
                 {
-                    Console.WriteLine("|" + product.ProductName.ToString().PadRight(24) +
-                  "|" + product.TotalQuantitySold.ToString("0 kr").PadRight(30) + "|");
+                    Console.WriteLine("│" + product.ProductName.ToString().PadRight(24) +
+                  "│" + product.TotalQuantitySold.ToString("0 kr").PadRight(30) + "│");
 
-                    Console.WriteLine("+------------------------+------------------------------+");
+                    Console.WriteLine("+────────────────────────+──────────────────────────────+");
                 }
 
                 Console.WriteLine("[0] Tillbaka");

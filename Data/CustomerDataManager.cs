@@ -12,9 +12,9 @@ public static class CustomerDataManager
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("---------------------------------------");
-            Console.WriteLine("|        Redigera Beställning         |");
-            Console.WriteLine("---------------------------------------");
+            Console.WriteLine("┌-─-─────────────────────────────────-┐");
+            Console.WriteLine("│        Redigera Beställning         │");
+            Console.WriteLine("└-───────────────────────────────────-┘");
             Console.ResetColor();
 
             // Hämta alla ordrar från MongoDB

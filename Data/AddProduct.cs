@@ -14,9 +14,9 @@ namespace ConsoleShoppen.Data
                 while (loop)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine("|           Lägg till Produkt              |");
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                    Console.WriteLine("│           Lägg till Produkt              │");
+                    Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
                     Console.WriteLine("[1] Lägg till en ny produkt");

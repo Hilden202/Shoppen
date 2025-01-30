@@ -26,9 +26,9 @@ namespace ConsoleShoppen.Menus
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine("|            Admin meny             |");
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine("┌-─-───────────────────────────────-┐");
+                Console.WriteLine("│            Admin meny             │");
+                Console.WriteLine("└-─────────────────────────────────-┘");
                 Console.ResetColor();
 
                 var menuNumbersSorted = Enum.GetValues(typeof(Models.AdminMenu))
@@ -41,9 +41,6 @@ namespace ConsoleShoppen.Menus
                     Console.ResetColor();
                     switch ((Models.AdminMenu)menuButton)
                     {
-                        case Models.AdminMenu.Startsida:
-                            Console.ForegroundColor = ConsoleColor.White;
-                            break;
                         case Models.AdminMenu.Visa_lagersaldo:
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
@@ -71,11 +68,6 @@ namespace ConsoleShoppen.Menus
                 {
                     switch ((Models.AdminMenu)nr)
                     {
-                        case Models.AdminMenu.Startsida:
-                            Console.Clear();
-                            await StartMenu.SMenuAsync();
-                            break;
-
                         case Models.AdminMenu.Visa_lagersaldo:
                             Console.Clear();
                             await StockBalance.RunAsync(allProducts);

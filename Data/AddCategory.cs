@@ -18,9 +18,9 @@ namespace ConsoleShoppen.Data
                 {
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine("|         Lägg till Produktkategori        |");
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine("┌-─-──────────────────────────────────────-┐");
+                    Console.WriteLine("│         Lägg till Produktkategori        │");
+                    Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
                     Console.WriteLine("Totalt " + allCategories.Count + " kategorier i listan.");
@@ -55,7 +55,7 @@ namespace ConsoleShoppen.Data
                     }
                     if (key >= ConsoleKey.D1 && key <= ConsoleKey.D9)
                     {
-                        int newCategory = (int)(key - ConsoleKey.D0);
+                        int newCategory = key - ConsoleKey.D0;
 
                         if (newCategory <= allCategories.Count)
                         {
