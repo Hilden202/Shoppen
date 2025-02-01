@@ -30,7 +30,7 @@ namespace ConsoleShoppen.Menus
                     switch ((Models.StatisticsMenu)menuButton)
                     {
                         case Models.StatisticsMenu.Beställningshistorik:
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.StatisticsMenu.Bäst_Säljande_produkter:
                             Console.ForegroundColor = ConsoleColor.Yellow;

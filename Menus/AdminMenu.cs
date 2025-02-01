@@ -45,13 +45,13 @@ namespace ConsoleShoppen.Menus
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Produkt_hantering:
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Statistik:
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Välj_topp_3_produkt:
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             break;
                         case Models.AdminMenu.Redigera_beställnings_information:
                             Console.ForegroundColor = ConsoleColor.Yellow;

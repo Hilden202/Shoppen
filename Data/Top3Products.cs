@@ -23,17 +23,15 @@ namespace ConsoleShoppen.Data
                 Console.WriteLine("└-────────────────────────────────────────-┘");
                 Console.ResetColor();
 
-                // Ladda de tre valda produkterna från databasen om de inte finns i den statiska listan
                 LoadTop3Products();
 
                 // Skapa en lista av ProductIds från SelectedProduct för att jämföra
                 var selectedProductIds = top3Products.Select(p => p.ProductId).ToList();
 
-                // Skriv ut alla produkter och visa om de är valda eller inte
                 int i = 1;
                 foreach (var product in availableProducts)
                 {
-                    string isSelected = selectedProductIds.Contains(product.Id) ? " (vald)" : ""; // Kontrollera om produktens Id finns i listan med valda produkter
+                    string isSelected = selectedProductIds.Contains(product.Id) ? " (vald)" : "";
                     Console.WriteLine("[" + i + "] " + product.Name.PadRight(33) + isSelected);
                     i++;
                 }
@@ -60,7 +58,6 @@ namespace ConsoleShoppen.Data
                         // Om produkten redan är vald, ta bort den från listan, annars lägg till den
                         if (selectedProductIds.Contains(selectedProduct.Id))
                         {
-                            // Ta bort från top3Products
                             var selected = top3Products.FirstOrDefault(p => p.ProductId == selectedProduct.Id);
                             if (selected != null)
                             {

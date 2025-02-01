@@ -20,15 +20,13 @@ namespace ConsoleShoppen.Data
                     Console.WriteLine("└-─────────────────────────────────────────-┘");
                     Console.ResetColor();
 
-                    var productList = allProducts
-                                     .OrderBy(p => p.Name)
-                                     .ToList();
+                    var productList = allProducts.ToList();
 
                     Console.WriteLine("Totalt " + productList.Count + " produkter i listan.");
                     Console.WriteLine("--------------------------------------------");
 
                     int i = 1;
-                    foreach (var product in allProducts)
+                    foreach (var product in productList)
                     {
                         Console.WriteLine("[" + i + "] " + product.Name);
                         i++;
@@ -36,6 +34,7 @@ namespace ConsoleShoppen.Data
 
                     Console.WriteLine("[0] Tillbaka");
                     Console.WriteLine("--------------------------------------------");
+
                     Console.WriteLine("Välj en produkt att ta bort: ");
 
                     if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int chosenProduct))
@@ -61,7 +60,7 @@ namespace ConsoleShoppen.Data
                     }
 
                     // Hämta vald produkt
-                    var selectedProduct = allProducts.ElementAtOrDefault(chosenProduct - 1);
+                    var selectedProduct = productList.ElementAtOrDefault(chosenProduct - 1);
 
                     if (selectedProduct != null)
                     {

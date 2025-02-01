@@ -22,9 +22,7 @@ namespace ConsoleShoppen.Data
                     Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
-                    var productList = allProducts
-                                     .OrderBy(p => p.Name)
-                                     .ToList();
+                    var productList = allProducts.ToList();
 
                     Console.WriteLine("Totalt " + productList.Count + " produkter i listan.");
                     Console.WriteLine("--------------------------------------------");
@@ -38,6 +36,7 @@ namespace ConsoleShoppen.Data
 
                     Console.WriteLine("[0] Tillbaka");
                     Console.WriteLine("--------------------------------------------");
+
                     Console.WriteLine("Välj en produkt att ändra: ");
 
                     if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int chosenProduct))
@@ -63,7 +62,7 @@ namespace ConsoleShoppen.Data
                     }
                     else if (chosenProduct > 0)
                     {
-                        var selectedProduct = allProducts.Where(p => p.Id == chosenProduct).FirstOrDefault();
+                        var selectedProduct = productList[chosenProduct - 1]; // index
 
                         if (selectedProduct != null)
                         {

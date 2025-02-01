@@ -41,6 +41,7 @@ namespace ConsoleShoppen.Menus
 
                         case Models.CustomerMenu.Shoppen:
                             Console.Clear();
+                            await ProductList.LoadProductListAsync();
                             await ShopMenu.SMenuAsync();
                             break;
 

@@ -45,9 +45,7 @@ namespace ConsoleShoppen.Data
                     Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
-                    var productList = productListAsync
-                                     .OrderBy(p => p.Name)
-                                     .ToList();
+                    var productList = productListAsync.ToList();
 
                     Console.WriteLine("Totalt " + productList.Count + " produkter i listan.");
                     Console.WriteLine("--------------------------------------------");

@@ -19,9 +19,7 @@ namespace ConsoleShoppen.Data
                     Console.WriteLine("└-────────────────────────────────────────-┘");
                     Console.ResetColor();
 
-                    var productList = allProducts
-                                     .OrderBy(p => p.Name)
-                                     .ToList();
+                    var productList = allProducts.ToList();
 
                     Console.WriteLine("Totalt " + productList.Count + " produkttyper i listan.");
                     Console.WriteLine("--------------------------------------------");
@@ -35,6 +33,8 @@ namespace ConsoleShoppen.Data
 
                     Console.WriteLine("[0] Tillbaka");
                     Console.WriteLine("--------------------------------------------");
+
+
                     Console.WriteLine("Välj en produkt att fylla på: ");
 
                     if (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int nr))
